@@ -1,3 +1,4 @@
+import {StatusBar} from "expo-status-bar";
 import React from 'react';
 import { StyleSheet, SafeAreaView, Platform} from 'react-native';
 import {Provider as PaperProvider} from "react-native-paper";
@@ -11,12 +12,16 @@ export default function App() {
           <Header/>
           <AppNavigation/>
         </SafeAreaView>
+        <StatusBar style="aut"/>
     </PaperProvider>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === 'android' ? 20 : 0
+    backgroundColor: '#FFF',
+    paddingTop: Platform.OS === 'android' ? 20 : 0,
+    paddingLeft: 20,
+    paddingRight: 20
   },
 });

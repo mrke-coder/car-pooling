@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {TextInput, Button, Avatar} from 'react-native-paper';
 import {Ionicons} from '@expo/vector-icons';
 
@@ -8,19 +8,19 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
 
-      <View style={styles.head}>
-        <Text style={styles.title}>Commencez gratuitement</Text>
+      {/*<View style={styles.head}>
+      <Text style={styles.title}>Commencez gratuitement</Text>
         <Text >Libre pour toujours. Aucune carte de crédit.</Text>
-      </View>
+      </View>*/}
 
       <View style={styles.type_compte}>
           <TouchableOpacity style={[styles.single_type, {marginLeft:10}]}>
             <Avatar.Icon size={40} icon="account-tie" style={{backgroundColor:'#e0e7ff'}}/>
             <Text style={styles.single_type_title}>Conducteur</Text>
             <Text style={styles.single_type_subtitle}>
-                Accès complet à tous les paramètres
+                Accès complet.
             </Text>
           </TouchableOpacity>
 
@@ -30,17 +30,23 @@ const Register = () => {
             <Text style={styles.single_type_subtitle}>Accès limité</Text>
           </TouchableOpacity>
       </View>
-        <Text>NOM & PRENOMS</Text>
-        <TextInput placeholder="FullName" value={fullName} onChangeText={fullName => setFullName(fullName)} />
-        <Text>ADRESSE EMAIL</Text>
-        <TextInput placeholder="Email" value={email} onChangeText={email => setEmail(email)} />
-        <Text>MOT DE PASSE</Text>
-        <TextInput secureTextEntry={true} placeholder="Password" value={password} onChangeText={password => setPassword(password)} />
+        <Text style={styles.label}>NOM & PRENOMS</Text>
+        <TextInput
+         style={styles.input}
+          placeholder="FullName"
+          value={fullName}
+          onChangeText={fullName => setFullName(fullName)}
+          >
+          </TextInput>
+        <Text style={styles.label}>ADRESSE EMAIL</Text>
+        <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={email => setEmail(email)} />
+        <Text style={styles.label}>MOT DE PASSE</Text>
+        <TextInput style={styles.input} secureTextEntry={true} placeholder="Password" value={password} onChangeText={password => setPassword(password)} />
       <View>
       </View>
 
       <View>
-          <Button uppercase={false} mode="contained" onPress={() => {}}>
+          <Button style={styles.btn_submit} uppercase={false} mode="contained" onPress={() => {}}>
               Créer un compte
           </Button>
           <Text>Vous avez déjà un compte ?</Text>
@@ -48,17 +54,16 @@ const Register = () => {
             se connecter
           </Button>
       </View>
-    </View>
+    </ScrollView>
   )
 };
 
 
 const styles = StyleSheet.create({
   container:{
-    width: '100%',
-    marginLeft:10,
-    marginRight: 10,
-    backgroundColor: '#FFF'
+    flex: 1,
+    paddingLeft:20,
+    paddingRight: 20,
   },
   head:{
     justifyContent: 'center',
@@ -95,6 +100,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color:'grey',
     fontWeight: '300'
+  },
+  label:{
+    marginBottom:5,
+    color: 'grey',
+    fontSize: 16
+  },
+  input:{
+    marginBottom:10,
+    borderRadius: 20,
+    borderWidth:0
+  },
+  btn_submit:{
+    paddingTop:10,
+    paddingBottom:10
   }
 })
 
